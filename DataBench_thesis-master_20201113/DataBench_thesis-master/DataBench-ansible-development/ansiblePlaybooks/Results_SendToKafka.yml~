@@ -1,0 +1,14 @@
+---
+- name: Check that confluent_kafka is installed
+ # become: yes
+  pip:
+    name: confluent_kafka
+    state: latest
+    executable: /usr/local/bin/pip3.6
+# https://stackoverflow.com/questions/26784185/ansible-passing-evaluated-variables-to-includes
+
+- name: Calling python script to send results to Kafka
+  command: python3.6 uploadToKafka.py -b {{kafka_broker}} -t {{topicName}} -i "{{tower_job_id}}|{{tower_user_id}}" -bn {{benchName}} -f {{local_resultsPath}}
+  args:
+    chdir: ../resultsProcessing/
+...

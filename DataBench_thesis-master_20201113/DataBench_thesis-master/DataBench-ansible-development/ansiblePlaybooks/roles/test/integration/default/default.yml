@@ -1,0 +1,7 @@
+- hosts: localhost
+  vars_files:
+    - defaults/main.yml
+  tasks:
+    - name: installs openjdk
+      yum: name=java-1.8.0-openjdk-1.8.0.102
+    - include: tasks/main.yml

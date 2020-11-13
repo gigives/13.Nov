@@ -1,0 +1,7 @@
+---
+- name: creates lein executable
+  template: src=templates/lein.j2 dest=/usr/local/bin/lein mode=0755
+- name: installs lein for user
+  command: /usr/local/bin/lein
+  become: yes
+  become_user: "{{ lein_user }}"

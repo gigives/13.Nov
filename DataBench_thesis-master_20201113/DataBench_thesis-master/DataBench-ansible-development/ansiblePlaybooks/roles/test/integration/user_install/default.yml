@@ -1,0 +1,15 @@
+- hosts: localhost
+  vars:
+    lein_version: '2.7.1'
+    lein_user: 'myuser'
+  tasks:
+    - name: installs openjdk
+      yum: name=java-1.8.0-openjdk-1.8.0.102
+    - name: creates group myuser
+      group: name=myuser
+    - name: creates myuser
+      user:
+        name: myuser
+        group: myuser
+        shell: /bin/bash
+    - include: tasks/main.yml

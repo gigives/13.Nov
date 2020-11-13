@@ -1,0 +1,168 @@
+---
+- hosts: local
+  connection: local
+  tasks:
+    - name: Ensures ../results/BigBenchV2/results/ dir exists
+      file: 
+        path: ../results/BigBenchV2/results/
+        state: directory 
+        recurse: yes
+
+- hosts: benchmark
+  remote_user: root
+  vars_files:
+    - ../vars/variables_BigBenchV2.yml
+
+  tasks:
+    - name: Getting BigBenchV2 benchmark from the GIT repository
+      git:
+        repo: 'https://github.com/t-ivanov/BigBenchV2'
+        dest: '{{ benchmarksPath }}/BigBenchV2'
+        force: yes
+      when:
+        - downloadBench
+
+    - name: Change permission of BigBenchV2 directory
+      become: yes
+      command: chmod -R 777 '{{ benchmarksPath }}/BigBenchV2/'
+
+    - name: Run the benchmark... creating files in tbl format
+      become: yes
+      command: 'chdir={{ benchmarksPath }}/BigBenchV2/DataGenLinux/ ./DataGen.out -s 1'
+      when: dataGen
+
+    - name: Run the benchmark... creating files in json format
+      become: yes
+      command: 'chdir={{ benchmarksPath }}/BigBenchV2/DataGenLinux/ ./DataGen.out -s 1 -j'
+      when: dataGen
+
+    - name: Create hdfs folders...
+      become: yes
+      command: 'hdfs dfs -mkdir {{ item }} '
+      with_items: 
+        - bigbenchv2
+        - bigbenchv2/data
+      when: createBasicFolders
+
+    - name: Create hdfs folders....
+      become: yes
+      command: 'hdfs dfs -mkdir bigbenchv2/data/{{ item }} '
+      with_items: 
+        - customers
+        - items
+        - product_reviews
+        - web_pages
+        - web_sales
+        - store_sales
+        - stores
+        - web_logs
+      when: createTableFolders
+
+    - name: rename a product_reviews table...
+      become: yes
+      command: 'mv {{ benchmarksPath }}/BigBenchV2/DataGenLinux/reviews.tbl {{ benchmarksPath }}/BigBenchV2/DataGenLinux/product_reviews.tbl'
+      when: renameReviewsFolder
+
+    - name: Loading the generated files into the hdfs folders...
+      become: yes
+      command: 'hdfs dfs -put {{ benchmarksPath }}/BigBenchV2/DataGenLinux/{{ item.table }}  bigbenchv2/data/{{ item.hdfsfolder }}/'
+      with_items: 
+        - {table: 'customers.tbl', hdfsfolder: 'customers'}
+        - {table: 'items.tbl', hdfsfolder: 'items'}
+        - {table: 'product_reviews.tbl', hdfsfolder: 'product_reviews'}
+        - {table: 'web_pages.tbl', hdfsfolder: 'web_pages'}
+        - {table: 'web_sales.tbl', hdfsfolder: 'web_sales'}
+        - {table: 'store_sales.tbl', hdfsfolder: 'store_sales'}
+        - {table: 'stores.tbl', hdfsfolder: 'stores'}
+        - {table: 'clicks.json', hdfsfolder: 'web_logs'}
+      when: loadingFilesinHdfs
+
+    - name: Insert a line in file #hive locks error
+      lineinfile:
+        path: '{{ benchmarksPath }}/BigBenchV2/schema/HiveCreateSchema.sql'
+        insertbefore: BOF
+        line: set hive.support.concurrency=true;
+
+    - name: Creating schema in hive
+      become: yes
+      command: 'hive -f {{ benchmarksPath }}/BigBenchV2/schema/HiveCreateSchema.sql'
+      when: createHiveSchema
+
+    - name: Replacing path to libraries
+      replace:
+        path: '{{ benchmarksPath }}/BigBenchV2/queries/{{ item.query }}'
+        regexp: "/bigbenchv2/"
+        replace: "{{ benchmarksPath }}/BigBenchV2/"
+        unsafe_writes: yes
+      with_items:
+        - {query: 'q1.hql'}
+        - {query: 'q10.hql'}
+        - {query: 'q18.hql'}
+        - {query: 'q27.hql'}
+        - {query: 'q29.hql'}
+        - {query: 'q30.hql'}
+
+
+    - name: Ensures {{ benchmarksPath }}/BigBenchV2/logs/ dir exists
+      file: 
+        path: '{{ benchmarksPath }}/BigBenchV2/logs/'
+        state: directory 
+        recurse: yes
+
+    - name: Replacing hostlist in execute_queries
+      replace:
+        path: '{{ benchmarksPath }}/BigBenchV2/queries/execute_queries.sh'
+        regexp: "141.2.2.172 141.2.2.171 141.2.2.170 141.2.2.169"
+        replace: " {{ hostlist }} "
+        unsafe_writes: yes
+
+    - name: Running the benchmark... all queries
+      become: yes
+      command: 'chdir={{ benchmarksPath }}/BigBenchV2/queries/ {{ item }}'
+      with_items:
+      - ./execute_queries.sh
+      - ./q25.sh query25_log.txt
+      - ./q26.sh query26_log.txt
+      - ./q28.sh query28_log.txt
+      when: runAllQueries
+
+    - name: Running the benchmark... q1-q24 and q29-q30
+      become: yes
+      command: 'chdir={{ benchmarksPath }}/BigBenchV2/queries/ {{ item }}'
+      when: queryWithout25to28
+
+    - name: Running the benchmark... q25-q28
+      become: yes
+      command: 'chdir={{ benchmarksPath }}/BigBenchV2/queries/ {{ item }}'
+      with_items:
+      - ./run_q25.sh | tee query25_log.txt
+      - ./run_q26.sh | tee query26_log.txt
+      - ./run_q28.sh | tee query28_log.txt
+      when: query25to28
+
+    - name: Moving the log files to results directory
+      become: yes
+      shell: 'mv {{ benchmarksPath }}/BigBenchV2/queries/*_log.txt ../results/BigBenchV2/results/'
+      when: runAllQueries
+
+    - name: Checking... if the log files are in the folder
+      become: yes
+      shell: 'ls ../results/BigBenchV2/results/'
+   
+    - name: Adjust
+      replace:
+        path: '../results/BigBenchV2/results/times.csv'
+        regexp: |
+        replace: _
+        unsafe_writes: yes
+      
+
+      
+#- hosts: local
+#  remote_user: root
+#  connection: local
+#  tasks:
+#    - block:
+#      - include: Results_SendToKafka.yml kafka_broker=databench.ijs.si:9092 topicName=BigBenchV2_results benchName=BigBenchV2 local_resultsPath=../results/BigBenchV2/#results/
+#      when: autoSendResults
+...

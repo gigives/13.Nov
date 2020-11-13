@@ -1,0 +1,136 @@
+---
+- hosts: local
+  connection: local
+  tasks:
+    - name: Ensures ../results/BigBench/results/ dir exists
+      file: 
+        path: ../results/BigBench/results/
+        state: directory 
+        recurse: yes
+
+- hosts: edge
+  remote_user: root
+  vars_files:
+    - ../vars/variables_TPCx-BB.yml
+
+  tasks: 
+
+    - name: Getting TPCx-BB benchmark from the GIT repository
+      git:
+        repo: 'https://github.com/valuko/TPCx-BB'
+        dest: '{{ benchmarksPath }}/TPCx-BB'
+        force: yes
+      when:
+        - downloadBench
+
+    # 1' -  In case the user decides not to download the benchmark, we will just copy the benchmark packaged with the platform
+    - name: 'Copy the benchmark to the remote location'
+      synchronize:
+        src: '{{playbook_dir}}/../benchmarks/TPCx-BB'
+        dest: '{{benchmarksPath}}/'
+        recursive: yes
+      when:
+        - not downloadBench
+
+    - name: Configuring the benchmark...
+      replace:
+        path: "{{ item.path }}"
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
+        unsafe_writes: yes
+      with_items:
+        - {path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf', regexp: '/usr/local/hadoop/etc/hadoop', replace: '{{ TPCxBB_BIG_BENCH_HADOOP_CONF }}'}
+        - {path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf', regexp: '/usr/local/hadoop/lib/native', replace: '{{ TPCxBB_BIG_BENCH_HADOOP_LIBS_NATIVE }}'}
+        - {path: '{{ benchmarksPath }}/TPCx-BB/engines/hive/conf/engineSettings.conf', regexp: '/usr/local/hive/bin/hive', replace: '{{ TPCxBB_BIG_BENCH_HIVE }}'}
+        - {path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf', regexp: '#export BIG_BENCH_PSSH_BINARY="pssh"', replace: 'export BIG_BENCH_PSSH_BINARY="pssh"'}
+        - {path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf', regexp: 'export BIG_BENCH_PSSH_BINARY="parallel-ssh"', replace: '#export BIG_BENCH_PSSH_BINARY="parallel-ssh"'}
+        - {path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf', regexp: 'export BIG_BENCH_DEFAULT_SCALE_FACTOR="300"', replace: 'export BIG_BENCH_DEFAULT_SCALE_FACTOR="1"'}
+        - {path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf', regexp: 'export BIG_BENCH_DATAGEN_HADOOP_OPTIONS=" -workers 6 -ap 4000 "', replace: 'export BIG_BENCH_DATAGEN_HADOOP_OPTIONS=" -workers 1 -ap 3000 "'}
+        - {path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf', regexp: '-Xmx5000m', replace: '-Xmx800m'}
+
+    - name: Configuring the benchmark... Hive
+      replace:
+        path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf'
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
+        unsafe_writes: yes
+      with_items:
+        - {regexp: '#export BIG_BENCH_DEFAULT_ENGINE="hive"', replace: 'export BIG_BENCH_DEFAULT_ENGINE="hive"'}
+        - {regexp: 'export BIG_BENCH_DEFAULT_ENGINE="spark"', replace: '#export BIG_BENCH_DEFAULT_ENGINE="spark-sql"'}
+      when: 
+        - runWithHive
+
+    - name: Configure Hive
+      replace:
+        path: '{{ benchmarksPath }}/TPCx-BB/engines/hive/conf/engineSettings.sql'
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
+        unsafe_writes: yes
+      with_items:
+        - {regexp: 'set hive.auto.convert.join;', replace: 'set hive.auto.convert.join=false;'}
+        - {regexp: '-- set hive.auto.convert.join=true;', replace: 'set hive.auto.convert.join=false;'}
+      when: hiveAutoConvert
+
+    - name: Configuring the benchmark... Spark
+      replace:
+        path: '{{ benchmarksPath }}/TPCx-BB/conf/userSettings.conf'
+        regexp: 'export BIG_BENCH_DEFAULT_ENGINE="spark"'
+        replace: 'export BIG_BENCH_DEFAULT_ENGINE="spark-sql"'
+        unsafe_writes: yes
+        backup: no
+      when:
+        - runWithSpark
+
+    - name: Insert a line at the end of a file #hive locks error
+      lineinfile:
+        path: '{{ benchmarksPath }}/TPCx-BB/engines/hive/conf/engineSettings.sql'
+        line: set hive.support.concurrency=true
+
+    - name: Change permission of TPCx-BB directory
+      become: yes
+      command: chmod -R 777 '{{ benchmarksPath }}/TPCx-BB/'
+
+    - name: Clean data...
+      become: yes
+      command: '{{ benchmarksPath }}/TPCx-BB/bin/bigBench runBenchmark -i CLEAN_DATA'
+      when: cleanData
+
+    - name: Data generation...
+      become: yes
+      command: '{{ benchmarksPath }}/TPCx-BB/bin/bigBench runBenchmark -i DATA_GENERATION'
+      when: dataGeneration
+
+    - name: Load data, Power test...
+      become: yes
+      command: '{{ benchmarksPath }}/TPCx-BB/bin/bigBench runBenchmark -i LOAD_TEST,POWER_TEST,THROUGHPUT_TEST_1,BENCHMARK_STOP,VALIDATE_POWER_TEST,VALIDATE_THROUGHPUT_TEST_1'
+      when: loadData
+
+#    - name: Running only query X (if needed this could be added)
+#      become: yes
+#      command: '{{ benchmarksPath }}/TPCx-BB/bin/bigBench runQuery -q X -U'
+#      when: queryX
+
+    - name: Run the benchmark...
+      become: yes
+      command: '{{ benchmarksPath }}/TPCx-BB/bin/TPCxBB_Validation.sh'
+      when: allSteps
+
+    - name: Run the benchmark once...
+      become: yes
+      command: '{{ benchmarksPath }}/TPCx-BB/bin/TPCxBB_Benchmarkrun.sh'
+      when: allSteps
+
+    - name: Run the benchmark twice...
+      become: yes
+      command: '{{ benchmarksPath }}/TPCx-BB/bin/TPCxBB_Benchmarkrun.sh'
+      when: allSteps
+
+
+- hosts: local
+  remote_user: root
+  connection: local
+  tasks:
+    - block:
+      - include: Results_SendToKafka.yml kafka_broker=databench.ijs.si:9092 topicName=BigBench_results benchName=BigBench local_resultsPath=../results/BigBench/results
+      when: autoSendResults
+...

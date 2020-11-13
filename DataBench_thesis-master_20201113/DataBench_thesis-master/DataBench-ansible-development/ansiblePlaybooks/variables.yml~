@@ -1,0 +1,37 @@
+---
+all:
+    hosts: 
+      benchmark:
+        ansible_host: localhost
+      edge: 
+        #ansible_host: festive_neumann
+        #ansible_connection: docker
+        ansible_python_interpreter: /usr/local/bin/python3.6
+      local:
+        local: localhost
+        ansible_python_interpreter: /usr/local/bin/python3.6
+
+#Move benchmark-specific var to includes?
+    vars:
+      # Action switches
+        downloadBench: false
+        autoSendResults: false
+        compile_bench: true
+
+      #General variables
+        benchmarksPath: /home/cloudera
+        resultsPath: /home/galena/gitProjects/results
+        HadoopRootPath: /home/galena/HadoopPath
+        SparkRootPath: /home/galena/SparkPath
+        SparkMasterHost: local[*]
+        KafkaHomePath: KAFKAHOME
+
+        #Format hostname:port,hostname:port
+        ZookeeperHosts: FILL_ME
+        #Format hostname:port,hostname:port
+        kafkabrokerlist: FILL_ME
+
+
+        tower_user_id: 33
+        tower_job_id: 0
+...
