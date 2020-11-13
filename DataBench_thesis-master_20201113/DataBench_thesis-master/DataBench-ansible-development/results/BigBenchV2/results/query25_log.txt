@@ -1,0 +1,16 @@
+executing query 25
+=========================================== STEP 1 ===========================================
+hive.exec.compress.output=false
+WARN: The method class org.apache.commons.logging.impl.SLF4JLogFactory#release() was invoked.
+WARN: Please see http://www.slf4j.org/codes.html#release for an explanation.
+=========================================== STEP 2 ===========================================
+MAHOUT_LOCAL is not set; adding HADOOP_CONF_DIR to classpath.
+Running on hadoop, using /usr/lib/hadoop/bin/hadoop and HADOOP_CONF_DIR=/etc/hadoop/conf
+MAHOUT-JOB: /usr/lib/mahout/mahout-examples-0.9-cdh5.13.0-job.jar
+=========================================== STEP 3 ===========================================
+MAHOUT_LOCAL is not set; adding HADOOP_CONF_DIR to classpath.
+Running on hadoop, using /usr/lib/hadoop/bin/hadoop and HADOOP_CONF_DIR=/etc/hadoop/conf
+MAHOUT-JOB: /usr/lib/mahout/mahout-examples-0.9-cdh5.13.0-job.jar
+=========================================== STEP 4 ===========================================
+=========================================== STEP 5 ===========================================
+query execution time: 219 (sec)| 0h 3m 39s

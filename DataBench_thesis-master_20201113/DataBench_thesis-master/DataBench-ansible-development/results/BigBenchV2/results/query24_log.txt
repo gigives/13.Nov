@@ -1,0 +1,203 @@
+
+Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-common-1.1.0-cdh5.13.0.jar!/hive-log4j.properties
+OK
+Time taken: 1.605 seconds
+OK
+Time taken: 0.282 seconds
+WARNING: Comparing a bigint and a string may result in a loss of precision.
+OK
+Time taken: 0.808 seconds
+OK
+Time taken: 0.094 seconds
+WARNING: Comparing a bigint and a string may result in a loss of precision.
+OK
+Time taken: 0.29 seconds
+OK
+Time taken: 0.034 seconds
+WARNING: Comparing a bigint and a string may result in a loss of precision.
+OK
+Time taken: 0.221 seconds
+hive.exec.compress.output=false
+OK
+Time taken: 0.017 seconds
+OK
+Time taken: 0.076 seconds
+WARNING: Comparing a bigint and a string may result in a loss of precision.
+WARNING: Comparing a bigint and a string may result in a loss of precision.
+WARNING: Comparing a bigint and a string may result in a loss of precision.
+Query ID = root_20201019154040_402f258e-ab14-44c5-b53b-3761040d4d73
+Total jobs = 11
+Launching Job 1 out of 11
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0090, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0090/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0090
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2020-10-19 15:40:36,881 Stage-1 map = 0%,  reduce = 0%
+2020-10-19 15:40:50,756 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.99 sec
+2020-10-19 15:41:01,614 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.06 sec
+MapReduce Total cumulative CPU time: 4 seconds 60 msec
+Ended Job = job_1603143438825_0090
+Launching Job 2 out of 11
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0091, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0091/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0091
+Hadoop job information for Stage-7: number of mappers: 1; number of reducers: 1
+2020-10-19 15:41:12,859 Stage-7 map = 0%,  reduce = 0%
+2020-10-19 15:41:21,515 Stage-7 map = 100%,  reduce = 0%, Cumulative CPU 1.83 sec
+2020-10-19 15:41:31,161 Stage-7 map = 100%,  reduce = 100%, Cumulative CPU 3.93 sec
+MapReduce Total cumulative CPU time: 3 seconds 930 msec
+Ended Job = job_1603143438825_0091
+Launching Job 3 out of 11
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0092, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0092/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0092
+Hadoop job information for Stage-13: number of mappers: 1; number of reducers: 1
+2020-10-19 15:41:43,175 Stage-13 map = 0%,  reduce = 0%
+2020-10-19 15:41:53,948 Stage-13 map = 100%,  reduce = 0%, Cumulative CPU 2.0 sec
+2020-10-19 15:42:04,725 Stage-13 map = 100%,  reduce = 100%, Cumulative CPU 4.01 sec
+MapReduce Total cumulative CPU time: 4 seconds 10 msec
+Ended Job = job_1603143438825_0092
+Execution log at: /tmp/root/root_20201019154040_402f258e-ab14-44c5-b53b-3761040d4d73.log
+2020-10-19 03:42:11	Starting to launch local task to process map join;	maximum memory = 119537664
+2020-10-19 03:42:13	Dump the side-table for tag: 0 with group count: 0 into file: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10019/HashTable-Stage-23/MapJoin-mapfile30--.hashtable
+2020-10-19 03:42:13	Uploaded 1 File to: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10019/HashTable-Stage-23/MapJoin-mapfile30--.hashtable (260 bytes)
+2020-10-19 03:42:13	End of local task; Time Taken: 1.708 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Execution log at: /tmp/root/root_20201019154040_402f258e-ab14-44c5-b53b-3761040d4d73.log
+2020-10-19 03:42:19	Starting to launch local task to process map join;	maximum memory = 119537664
+2020-10-19 03:42:21	Dump the side-table for tag: 0 with group count: 0 into file: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10021/HashTable-Stage-10/MapJoin-mapfile40--.hashtable
+2020-10-19 03:42:21	Uploaded 1 File to: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10021/HashTable-Stage-10/MapJoin-mapfile40--.hashtable (260 bytes)
+2020-10-19 03:42:21	Dump the side-table for tag: 0 with group count: 0 into file: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10021/HashTable-Stage-10/MapJoin-mapfile50--.hashtable
+2020-10-19 03:42:21	Uploaded 1 File to: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10021/HashTable-Stage-10/MapJoin-mapfile50--.hashtable (260 bytes)
+2020-10-19 03:42:21	End of local task; Time Taken: 1.677 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Execution log at: /tmp/root/root_20201019154040_402f258e-ab14-44c5-b53b-3761040d4d73.log
+2020-10-19 03:42:27	Starting to launch local task to process map join;	maximum memory = 119537664
+2020-10-19 03:42:29	Dump the side-table for tag: 0 with group count: 0 into file: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10023/HashTable-Stage-16/MapJoin-mapfile60--.hashtable
+2020-10-19 03:42:29	Uploaded 1 File to: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10023/HashTable-Stage-16/MapJoin-mapfile60--.hashtable (260 bytes)
+2020-10-19 03:42:29	Dump the side-table for tag: 0 with group count: 0 into file: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10023/HashTable-Stage-16/MapJoin-mapfile70--.hashtable
+2020-10-19 03:42:29	Uploaded 1 File to: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10023/HashTable-Stage-16/MapJoin-mapfile70--.hashtable (260 bytes)
+2020-10-19 03:42:29	End of local task; Time Taken: 1.7 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 4 out of 11
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1603143438825_0093, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0093/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0093
+Hadoop job information for Stage-23: number of mappers: 1; number of reducers: 0
+2020-10-19 15:42:40,632 Stage-23 map = 0%,  reduce = 0%
+2020-10-19 15:42:50,614 Stage-23 map = 100%,  reduce = 0%, Cumulative CPU 2.25 sec
+MapReduce Total cumulative CPU time: 2 seconds 250 msec
+Ended Job = job_1603143438825_0093
+Launching Job 5 out of 11
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0094, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0094/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0094
+Hadoop job information for Stage-10: number of mappers: 1; number of reducers: 1
+2020-10-19 15:43:03,969 Stage-10 map = 0%,  reduce = 0%
+2020-10-19 15:43:12,772 Stage-10 map = 100%,  reduce = 0%, Cumulative CPU 2.15 sec
+2020-10-19 15:43:22,404 Stage-10 map = 100%,  reduce = 100%, Cumulative CPU 4.24 sec
+MapReduce Total cumulative CPU time: 4 seconds 240 msec
+Ended Job = job_1603143438825_0094
+Launching Job 6 out of 11
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0095, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0095/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0095
+Hadoop job information for Stage-16: number of mappers: 1; number of reducers: 1
+2020-10-19 15:43:34,597 Stage-16 map = 0%,  reduce = 0%
+2020-10-19 15:43:44,441 Stage-16 map = 100%,  reduce = 0%, Cumulative CPU 2.26 sec
+2020-10-19 15:43:54,073 Stage-16 map = 100%,  reduce = 100%, Cumulative CPU 4.28 sec
+MapReduce Total cumulative CPU time: 4 seconds 280 msec
+Ended Job = job_1603143438825_0095
+Stage-28 is selected by condition resolver.
+Stage-29 is filtered out by condition resolver.
+Stage-30 is filtered out by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Execution log at: /tmp/root/root_20201019154040_402f258e-ab14-44c5-b53b-3761040d4d73.log
+2020-10-19 03:44:01	Starting to launch local task to process map join;	maximum memory = 119537664
+2020-10-19 03:44:03	Dump the side-table for tag: 1 with group count: 0 into file: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10013/HashTable-Stage-19/MapJoin-mapfile01--.hashtable
+2020-10-19 03:44:03	Uploaded 1 File to: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10013/HashTable-Stage-19/MapJoin-mapfile01--.hashtable (260 bytes)
+2020-10-19 03:44:03	Dump the side-table for tag: 2 with group count: 0 into file: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10013/HashTable-Stage-19/MapJoin-mapfile02--.hashtable
+2020-10-19 03:44:03	Uploaded 1 File to: file:/tmp/root/d8288dba-7391-4c71-97da-5b52cbbe041f/hive_2020-10-19_15-40-22_922_7420136262148732310-1/-local-10013/HashTable-Stage-19/MapJoin-mapfile02--.hashtable (260 bytes)
+2020-10-19 03:44:03	End of local task; Time Taken: 1.331 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 8 out of 11
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1603143438825_0096, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0096/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0096
+Hadoop job information for Stage-19: number of mappers: 1; number of reducers: 0
+2020-10-19 15:44:14,877 Stage-19 map = 0%,  reduce = 0%
+2020-10-19 15:44:24,576 Stage-19 map = 100%,  reduce = 0%, Cumulative CPU 2.17 sec
+MapReduce Total cumulative CPU time: 2 seconds 170 msec
+Ended Job = job_1603143438825_0096
+Launching Job 9 out of 11
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0097, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0097/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0097
+Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
+2020-10-19 15:44:37,162 Stage-4 map = 0%,  reduce = 0%
+2020-10-19 15:44:46,083 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 1.33 sec
+2020-10-19 15:44:55,852 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 3.79 sec
+MapReduce Total cumulative CPU time: 3 seconds 790 msec
+Ended Job = job_1603143438825_0097
+Loading data to table bigbenchv2.q24_results
+Table bigbenchv2.q24_results stats: [numFiles=1, numRows=0, totalSize=0, rawDataSize=0]
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.06 sec   HDFS Read: 9951 HDFS Write: 96 SUCCESS
+Stage-Stage-7: Map: 1  Reduce: 1   Cumulative CPU: 3.93 sec   HDFS Read: 10011 HDFS Write: 96 SUCCESS
+Stage-Stage-13: Map: 1  Reduce: 1   Cumulative CPU: 4.01 sec   HDFS Read: 10011 HDFS Write: 96 SUCCESS
+Stage-Stage-23: Map: 1   Cumulative CPU: 2.25 sec   HDFS Read: 6700 HDFS Write: 96 SUCCESS
+Stage-Stage-10: Map: 1  Reduce: 1   Cumulative CPU: 4.24 sec   HDFS Read: 17013 HDFS Write: 96 SUCCESS
+Stage-Stage-16: Map: 1  Reduce: 1   Cumulative CPU: 4.28 sec   HDFS Read: 17060 HDFS Write: 96 SUCCESS
+Stage-Stage-19: Map: 1   Cumulative CPU: 2.17 sec   HDFS Read: 6344 HDFS Write: 96 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 1   Cumulative CPU: 3.79 sec   HDFS Read: 6139 HDFS Write: 48 SUCCESS
+Total MapReduce CPU Time Spent: 28 seconds 730 msec
+OK
+Time taken: 274.479 seconds
+OK
+Time taken: 0.159 seconds
+OK
+Time taken: 0.106 seconds
+OK
+Time taken: 0.095 seconds
+WARN: The method class org.apache.commons.logging.impl.SLF4JLogFactory#release() was invoked.
+WARN: Please see http://www.slf4j.org/codes.html#release for an explanation.

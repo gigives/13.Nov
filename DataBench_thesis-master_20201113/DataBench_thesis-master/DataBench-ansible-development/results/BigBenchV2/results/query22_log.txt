@@ -1,0 +1,46 @@
+
+Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-common-1.1.0-cdh5.13.0.jar!/hive-log4j.properties
+OK
+Time taken: 1.549 seconds
+Query ID = root_20201019153737_6613c145-1e52-4c23-800f-1d622b54aa9a
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0086, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0086/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0086
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2020-10-19 15:37:44,651 Stage-1 map = 0%,  reduce = 0%
+2020-10-19 15:37:55,899 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.07 sec
+2020-10-19 15:38:05,709 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 4.54 sec
+MapReduce Total cumulative CPU time: 4 seconds 540 msec
+Ended Job = job_1603143438825_0086
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0087, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0087/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0087
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2020-10-19 15:38:17,425 Stage-2 map = 0%,  reduce = 0%
+2020-10-19 15:38:25,184 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 1.27 sec
+2020-10-19 15:38:35,865 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 2.82 sec
+MapReduce Total cumulative CPU time: 2 seconds 820 msec
+Ended Job = job_1603143438825_0087
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 4.54 sec   HDFS Read: 10982 HDFS Write: 96 SUCCESS
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 2.82 sec   HDFS Read: 5470 HDFS Write: 0 SUCCESS
+Total MapReduce CPU Time Spent: 7 seconds 360 msec
+OK
+Time taken: 67.71 seconds
+WARN: The method class org.apache.commons.logging.impl.SLF4JLogFactory#release() was invoked.
+WARN: Please see http://www.slf4j.org/codes.html#release for an explanation.

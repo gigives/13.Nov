@@ -1,0 +1,105 @@
+
+Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-common-1.1.0-cdh5.13.0.jar!/hive-log4j.properties
+OK
+Time taken: 2.777 seconds
+Added [/home/cloudera/BigBenchV2/resources/opennlp-maxent-3.0.3.jar] to class path
+Added resources: [/home/cloudera/BigBenchV2/resources/opennlp-maxent-3.0.3.jar]
+Added [/home/cloudera/BigBenchV2/resources/opennlp-tools-1.5.3.jar] to class path
+Added resources: [/home/cloudera/BigBenchV2/resources/opennlp-tools-1.5.3.jar]
+Added [/home/cloudera/BigBenchV2/resources/bigbenchqueriesmr.jar] to class path
+Added resources: [/home/cloudera/BigBenchV2/resources/bigbenchqueriesmr.jar]
+new de.bankmark.bigbench.queries.q18.NegativeSentimentUDF()
+new de.bankmark.bigbench.queries.q18.NegativeSentimentUDF() done
+OK
+Time taken: 0.423 seconds
+OK
+Time taken: 0.129 seconds
+OK
+Time taken: 0.404 seconds
+Warning: Map Join MAPJOIN[45][bigTable=?] in task 'Stage-9:MAPRED' is a cross product
+Query ID = root_20201019152727_5b356c91-6900-4d38-b47a-e7a4762ab2ad
+Total jobs = 2
+Execution log at: /tmp/root/root_20201019152727_5b356c91-6900-4d38-b47a-e7a4762ab2ad.log
+2020-10-19 03:27:58	Starting to launch local task to process map join;	maximum memory = 119537664
+2020-10-19 03:28:00	Dump the side-table for tag: 0 with group count: 0 into file: file:/tmp/root/d1afeef1-ffbf-472d-9104-5d8f7a4706be/hive_2020-10-19_15-27-49_111_2087944016706469291-1/-local-10007/HashTable-Stage-2/MapJoin-mapfile20--.hashtable
+2020-10-19 03:28:00	Uploaded 1 File to: file:/tmp/root/d1afeef1-ffbf-472d-9104-5d8f7a4706be/hive_2020-10-19_15-27-49_111_2087944016706469291-1/-local-10007/HashTable-Stage-2/MapJoin-mapfile20--.hashtable (260 bytes)
+2020-10-19 03:28:00	End of local task; Time Taken: 1.89 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 2
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0072, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0072/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0072
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2020-10-19 15:28:14,173 Stage-2 map = 0%,  reduce = 0%
+2020-10-19 15:28:26,314 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 2.18 sec
+2020-10-19 15:28:37,156 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 5.18 sec
+MapReduce Total cumulative CPU time: 5 seconds 180 msec
+Ended Job = job_1603143438825_0072
+Execution log at: /tmp/root/root_20201019152727_5b356c91-6900-4d38-b47a-e7a4762ab2ad.log
+2020-10-19 03:28:46	Starting to launch local task to process map join;	maximum memory = 119537664
+2020-10-19 03:28:48	Dump the side-table for tag: 1 with group count: 0 into file: file:/tmp/root/d1afeef1-ffbf-472d-9104-5d8f7a4706be/hive_2020-10-19_15-27-49_111_2087944016706469291-1/-local-10005/HashTable-Stage-9/MapJoin-mapfile01--.hashtable
+2020-10-19 03:28:48	Uploaded 1 File to: file:/tmp/root/d1afeef1-ffbf-472d-9104-5d8f7a4706be/hive_2020-10-19_15-27-49_111_2087944016706469291-1/-local-10005/HashTable-Stage-9/MapJoin-mapfile01--.hashtable (260 bytes)
+2020-10-19 03:28:48	Dump the side-table for tag: 0 with group count: 0 into file: file:/tmp/root/d1afeef1-ffbf-472d-9104-5d8f7a4706be/hive_2020-10-19_15-27-49_111_2087944016706469291-1/-local-10005/HashTable-Stage-9/MapJoin-mapfile10--.hashtable
+2020-10-19 03:28:48	Uploaded 1 File to: file:/tmp/root/d1afeef1-ffbf-472d-9104-5d8f7a4706be/hive_2020-10-19_15-27-49_111_2087944016706469291-1/-local-10005/HashTable-Stage-9/MapJoin-mapfile10--.hashtable (260 bytes)
+2020-10-19 03:28:48	End of local task; Time Taken: 1.841 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 2 out of 2
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1603143438825_0073, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0073/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0073
+Hadoop job information for Stage-9: number of mappers: 1; number of reducers: 0
+2020-10-19 15:29:03,118 Stage-9 map = 0%,  reduce = 0%
+2020-10-19 15:29:14,098 Stage-9 map = 100%,  reduce = 0%, Cumulative CPU 2.34 sec
+MapReduce Total cumulative CPU time: 2 seconds 340 msec
+Ended Job = job_1603143438825_0073
+Loading data to table bigbenchv2.q18_temp
+Table bigbenchv2.q18_temp stats: [numFiles=1, numRows=0, totalSize=0, rawDataSize=0]
+MapReduce Jobs Launched: 
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 5.18 sec   HDFS Read: 19933 HDFS Write: 96 SUCCESS
+Stage-Stage-9: Map: 1   Cumulative CPU: 2.34 sec   HDFS Read: 7899 HDFS Write: 45 SUCCESS
+Total MapReduce CPU Time Spent: 7 seconds 520 msec
+OK
+Time taken: 86.487 seconds
+hive.exec.compress.output=false
+OK
+Time taken: 0.072 seconds
+OK
+Time taken: 0.075 seconds
+new de.bankmark.bigbench.queries.q18.NegativeSentimentUDF()
+new de.bankmark.bigbench.queries.q18.NegativeSentimentUDF() done
+initialize de.bankmark.bigbench.queries.q18.NegativeSentimentUDF
+initialize de.bankmark.bigbench.queries.q18.NegativeSentimentUDF done
+Query ID = root_20201019152929_88ccc0b0-5e34-487a-afea-ff651ccf0d5f
+Total jobs = 3
+Launching Job 1 out of 3
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1603143438825_0074, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0074/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0074
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0
+2020-10-19 15:29:28,350 Stage-1 map = 0%,  reduce = 0%
+2020-10-19 15:29:38,352 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.49 sec
+MapReduce Total cumulative CPU time: 2 seconds 490 msec
+Ended Job = job_1603143438825_0074
+Stage-4 is selected by condition resolver.
+Stage-3 is filtered out by condition resolver.
+Stage-5 is filtered out by condition resolver.
+Moving data to: hdfs://quickstart.cloudera:8020/user/hive/warehouse/bigbenchv2.db/q18_results/.hive-staging_hive_2020-10-19_15-29-15_766_1809053847442371009-1/-ext-10000
+Loading data to table bigbenchv2.q18_results
+Table bigbenchv2.q18_results stats: [numFiles=1, numRows=0, totalSize=0, rawDataSize=0]
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1   Cumulative CPU: 2.49 sec   HDFS Read: 4507 HDFS Write: 48 SUCCESS
+Total MapReduce CPU Time Spent: 2 seconds 490 msec
+OK
+Time taken: 24.067 seconds
+OK
+Time taken: 0.201 seconds
+WARN: The method class org.apache.commons.logging.impl.SLF4JLogFactory#release() was invoked.
+WARN: Please see http://www.slf4j.org/codes.html#release for an explanation.

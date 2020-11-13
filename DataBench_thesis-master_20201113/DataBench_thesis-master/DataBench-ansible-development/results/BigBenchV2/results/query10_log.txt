@@ -1,0 +1,50 @@
+
+Logging initialized using configuration in jar:file:/usr/lib/hive/lib/hive-common-1.1.0-cdh5.13.0.jar!/hive-log4j.properties
+Added [/home/cloudera/BigBenchV2/resources/opennlp-maxent-3.0.3.jar] to class path
+Added resources: [/home/cloudera/BigBenchV2/resources/opennlp-maxent-3.0.3.jar]
+Added [/home/cloudera/BigBenchV2/resources/opennlp-tools-1.5.3.jar] to class path
+Added resources: [/home/cloudera/BigBenchV2/resources/opennlp-tools-1.5.3.jar]
+Added [/home/cloudera/BigBenchV2/resources/bigbenchqueriesmr.jar] to class path
+Added resources: [/home/cloudera/BigBenchV2/resources/bigbenchqueriesmr.jar]
+initialize de.bankmark.bigbench.queries.q10.SentimentUDF()
+initialize de.bankmark.bigbench.queries.q10.SentimentUDF() done
+OK
+Time taken: 1.13 seconds
+OK
+Time taken: 0.055 seconds
+hive.exec.compress.output=false
+OK
+Time taken: 0.135 seconds
+OK
+Time taken: 0.42 seconds
+initialize de.bankmark.bigbench.queries.q10.SentimentUDF()
+initialize de.bankmark.bigbench.queries.q10.SentimentUDF() done
+initialize() de.bankmark.bigbench.queries.q10.SentimentUDF
+initialize() de.bankmark.bigbench.queries.q10.SentimentUDF done
+Query ID = root_20201019151212_7f7ea393-2238-4119-9784-7b615dfb9bac
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1603143438825_0049, Tracking URL = http://quickstart.cloudera:8088/proxy/application_1603143438825_0049/
+Kill Command = /usr/lib/hadoop/bin/hadoop job  -kill job_1603143438825_0049
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2020-10-19 15:12:59,885 Stage-1 map = 0%,  reduce = 0%
+2020-10-19 15:13:09,021 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 1.44 sec
+2020-10-19 15:13:18,792 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3.9 sec
+MapReduce Total cumulative CPU time: 3 seconds 900 msec
+Ended Job = job_1603143438825_0049
+Loading data to table bigbenchv2.q10_results
+Table bigbenchv2.q10_results stats: [numFiles=1, numRows=0, totalSize=0, rawDataSize=0]
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 3.9 sec   HDFS Read: 8092 HDFS Write: 48 SUCCESS
+Total MapReduce CPU Time Spent: 3 seconds 900 msec
+OK
+Time taken: 34.898 seconds
+WARN: The method class org.apache.commons.logging.impl.SLF4JLogFactory#release() was invoked.
+WARN: Please see http://www.slf4j.org/codes.html#release for an explanation.
