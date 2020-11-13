@@ -1,0 +1,20 @@
+---
+#TPCx-BB benchmark specific (cloudera path)
+TPCxBB_BIG_BENCH_HADOOP_CONF: /etc/hadoop/conf
+TPCxBB_BIG_BENCH_HADOOP_LIBS_NATIVE: /usr/lib/hadoop/lib/native
+TPCxBB_BIG_BENCH_HIVE: /usr/bin/hive
+
+#Spark
+runWithSpark: false
+#Hive
+runWithHive: true
+hiveAutoConvert: true
+
+#Run Benchmark
+allSteps: true
+#------- OR
+cleanData: false
+dataGeneration: false
+loadData: false
+queryX: false
+...

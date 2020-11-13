@@ -1,0 +1,3 @@
+---
+#Install yasible lein from ansible galaxy, needed for yahoo-streaming
+- src: yashible.lein

@@ -1,0 +1,14 @@
+---
+hostlist:
+
+#Run Benchmark
+runAllQueries: false
+queryWithout25to28: false
+query25to28: false
+dataGen: false
+createBasicFolders: true
+createTableFolders: true
+renameReviewsFolder: true
+loadingFilesinHdfs: false
+createHiveSchema: false
+...
